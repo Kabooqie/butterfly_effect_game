@@ -1,96 +1,63 @@
 <img width="3188" height="1202" alt="frame (3)" src="https://github.com/user-attachments/assets/517ad8e9-ad22-457d-9538-a9e62d137cd7" />
 
 
-# [Project Name] 🎯
+# The Butterfly effect 🎯
 
 
 ## Basic Details
-### Team Name: [Name]
+### Team Name: [Technologiya]
 
 
 ### Team Members
-- Team Lead: [Name] - [College]
-- Member 2: [Name] - [College]
-- Member 3: [Name] - [College]
+- Team Lead: [Rudain] - [TKM college of engineering]
+- Member 2: [Narayan] - [TKM college of engineering]
 
 ### Project Description
-[2-3 lines about what your project does]
+[Our project is a simple game showcasing butterfly effect, there will be a bit of a storyline but with each options taken by the user, the game progresses immensly fast, and at the end the user has to guess the decision that caused the ending they are seeing. The story lines are uniwue everytime, so is the options]
 
 ### The Problem (that doesn't exist)
-[What ridiculous problem are you solving?]
+[No game showcasing butterfly effect]
 
 ### The Solution (that nobody asked for)
-[How are you solving it? Keep it fun!]
+[Made a game showcasing butterfly effect]
 
 ## Technical Details
 ### Technologies/Components Used
 For Software:
-- [Languages used]
-- [Frameworks used]
-- [Libraries used]
-- [Tools used]
+- [Python, HTML, CSS]
+- [HTML, CSS]
+- [Gemini api]
+- [Pycharm]
 
-For Hardware:
-- [List main components]
-- [List specifications]
-- [List tools required]
 
 ### Implementation
 For Software:
 # Installation
-[commands]
+[pip install flask google-generative ai]
 
-# Run
-[commands]
 
 ### Project Documentation
 For Software:
 
 # Screenshots (Add at least 3)
-![Screenshot1](Add screenshot 1 here with proper name)
-*Add caption explaining what this shows*
+![<img width="1919" height="864" alt="image" src="https://github.com/user-attachments/assets/e5f129c6-3a0f-46bb-8e4b-78806db53763" />
+](Add screenshot 1 here with proper name)
+*Working of the project*
 
-![Screenshot2](Add screenshot 2 here with proper name)
-*Add caption explaining what this shows*
+![<img width="1919" height="944" alt="image" src="https://github.com/user-attachments/assets/965cb70e-65ec-481f-bbcc-8096d28fc76b" />
+](Add screenshot 2 here with proper name)
+*Working of the project*
 
-![Screenshot3](Add screenshot 3 here with proper name)
-*Add caption explaining what this shows*
+![<img width="1919" height="898" alt="image" src="https://github.com/user-attachments/assets/f55ba042-723b-4332-b660-93e6b0aa6b41" />
+](Add screenshot 3 here with proper name)
+*WOrking of the project*
 
-# Diagrams
-![Workflow](Add your workflow/architecture diagram here)
-*Add caption explaining your workflow*
-
-For Hardware:
-
-# Schematic & Circuit
-![Circuit](Add your circuit diagram here)
-*Add caption explaining connections*
-
-![Schematic](Add your schematic diagram here)
-*Add caption explaining the schematic*
-
-# Build Photos
-![Components](Add photo of your components here)
-*List out all components shown*
-
-![Build](Add photos of build process here)
-*Explain the build steps*
-
-![Final](Add photo of final product here)
-*Explain the final build*
 
 ### Project Demo
 # Video
-[Add your demo video link here]
-*Explain what the video demonstrates*
+[[Add your demo video link here](https://drive.google.com/file/d/1Vcym9fAFvJ1qad9It_ZZZ8som7Tl-T6N/view?usp=drive_link)]
+*The video reperesnts the working of the game in its entire entirity*
 
-# Additional Demos
-[Add any extra demo materials/links]
-
-## Team Contributions
-- [Name 1]: [Specific contributions]
-- [Name 2]: [Specific contributions]
-- [Name 3]: [Specific contributions]
 
 ---
 Made with ❤️ at TinkerHub Useless Projects 
