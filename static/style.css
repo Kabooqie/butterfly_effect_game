@@ -1,0 +1,197 @@
+/* static/style.css - Prince of Persia Card Theme */
+
+/* --- The Game Table (Background) --- */
+body {
+    font-family: 'Lora', serif;
+    background-color: #1a252f;
+    background-image: url("https://www.transparenttextures.com/patterns/dark-denim-3.png");
+    color: #ecf0f1;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.game-container {
+    width: 100%;
+    max-width: 600px;
+    margin-top: 20px;
+}
+
+/* --- THE NEW STORY CARD STYLE --- */
+#story-card {
+    background-color: #f9e79f; /* A soft, warm gold color */
+    background-image: url("https://www.transparenttextures.com/patterns/paper-fibers.png");
+    color: #4a4a4a; /* Dark brown text */
+
+    /* Card Shape & Border */
+    border-radius: 15px;
+    border: 1px solid #d1c7b7;
+    border-top: 1px solid #fefbf2;
+    border-left: 1px solid #fefbf2;
+
+    /* Card Shadow */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.4), 0 15px 35px rgba(0,0,0,0.4);
+
+    padding: 30px;
+    margin-bottom: 25px;
+
+    /* Smooth transition for hover AND the new loading effect */
+    transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+#story-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.5), 0 20px 45px rgba(0,0,0,0.5);
+}
+
+/* This style is applied by JavaScript to fade the card out */
+#story-card.loading {
+    opacity: 0;
+    transform: scale(0.98);
+}
+
+
+/* --- Typography and Accents --- */
+#story-card h2 {
+    font-family: 'Cinzel', serif;
+    text-align: center;
+    color: #af8951;
+    border-bottom: 2px solid #d1c7b7;
+    padding-bottom: 15px;
+    margin-top: 0;
+    font-size: 1.8em;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+}
+
+.score-board {
+    text-align: right;
+    font-family: 'Cinzel', serif;
+    font-size: 1.5em;
+    color: #af8951;
+    margin-bottom: 10px;
+    font-weight: bold;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+}
+
+.user-action {
+    color: #0b6b5a;
+    font-style: italic;
+    border-left: 3px solid #af8951;
+    padding-left: 10px;
+    background-color: #f7f1e2;
+    border-radius: 4px;
+}
+
+#story-text {
+    max-height: 400px;
+    overflow-y: auto;
+    text-align: left;
+    line-height: 1.7;
+    padding-right: 15px;
+}
+#story-text p { margin-bottom: 1em; }
+
+/* --- Buttons and Choices --- */
+.input-area {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.choice-button {
+    font-family: 'Cinzel', serif;
+    font-size: 1.2em;
+    color: #fdf6e3;
+    background-color: #587d71;
+    border: 1px solid #7a9e93;
+    border-bottom: 3px solid #3e584f;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    padding: 15px 20px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.choice-button:hover:not(:disabled) {
+    background-color: #6a9689;
+    transform: translateY(-2px);
+    border-bottom-width: 5px;
+}
+
+.choice-button:active:not(:disabled) {
+    transform: translateY(0px);
+    border-bottom-width: 3px;
+}
+
+.choice-button:disabled {
+    background-color: #95a5a6;
+    border-color: #7f8c8d;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+/* --- Guessing Phase Styles --- */
+.hidden { display: none; }
+
+#guessing-phase-view h3 {
+    text-align: center;
+    color: #f1c40f;
+    margin-bottom: 20px;
+    font-family: 'Cinzel', serif;
+}
+
+#submit-guess-button, #new-game-button {
+    font-family: 'Cinzel', serif;
+    background-color: #af8951;
+    border: 1px solid #d3b07f;
+    border-bottom: 3px solid #8b6d40;
+}
+
+#submit-guess-button:hover:not(:disabled), #new-game-button:hover:not(:disabled) {
+    background-color: #c19a5b;
+}
+
+.choice-item {
+    background-color: rgba(255,255,255,0.05);
+    margin: 5px 0;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #7f8c8d;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: background-color 0.2s;
+}
+
+.choice-item:hover { background-color: rgba(255,255,255,0.1); }
+
+.choice-item input[type="radio"] {
+    margin-right: 15px;
+    transform: scale(1.5);
+    accent-color: #af8951;
+}
+
+.choice-item label {
+    font-size: 1.1em;
+    cursor: pointer;
+}
+
+.result-text {
+    text-align: center;
+    font-size: 1.3em;
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #16a085;
+    color: white;
+    border-radius: 8px;
+}
+
+#new-game-button {
+    display: block;
+    margin: 20px auto 0 auto;
+}

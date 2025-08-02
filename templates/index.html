@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Butterfly Effect Mystery</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="game-container">
+        <div class="score-board">SCORE: <span id="score-display">{{ score }}</span></div>
+
+        <div id="story-card">
+            <h2>The Story...</h2>
+            <div id="story-text">
+                <p>{{ initial_story }}</p>
+            </div>
+        </div>
+
+        <div id="story-phase-view">
+            <div id="choice-buttons" class="input-area">
+                </div>
+        </div>
+
+        <div id="guessing-phase-view" class="hidden">
+            <h3>The story has concluded! But which small choice caused the chaos?</h3>
+            <div id="choices-list"></div>
+            <button id="submit-guess-button">Submit Final Guess</button>
+        </div>
+
+        <div id="result-area"></div>
+        <button id="new-game-button" class="hidden">Start a New Mystery</button>
+    </div>
+
+    <script>
+        const storyPhaseView = document.getElementById('story-phase-view');
+        const guessingPhaseView = document.getElementById('guessing-phase-view');
+        const storyCard = document.getElementById('story-card'); // Get the whole card
+        const storyTextDiv = document.getElementById('story-text');
+        const scoreDisplay = document.getElementById('score-display');
+        const choicesListDiv = document.getElementById('choices-list');
+        const choiceButtonsDiv = document.getElementById('choice-buttons');
+        const submitGuessButton = document.getElementById('submit-guess-button');
+        const resultArea = document.getElementById('result-area');
+        const newGameButton = document.getElementById('new-game-button');
+
+        submitGuessButton.addEventListener('click', handleGuess);
+        newGameButton.addEventListener('click', () => { window.location.href = '/'; });
+
+        function renderChoiceButtons(choice1Text, choice2Text) {
+            if (choice1Text && choice2Text) {
+                choiceButtonsDiv.innerHTML = `
+                    <button class="choice-button" data-choice="${choice1Text}">${choice1Text}</button>
+                    <button class="choice-button" data-choice="${choice2Text}">${choice2Text}</button>
+                `;
+                document.querySelectorAll('.choice-button').forEach(button => {
+                    button.addEventListener('click', handleChoice);
+                });
+            } else {
+                choiceButtonsDiv.innerHTML = '';
+            }
+        }
+
+        async function handleChoice(event) {
+            const userAction = event.target.dataset.choice;
+
+            document.querySelectorAll('.choice-button').forEach(button => button.disabled = true);
+            storyCard.classList.add('loading');
+
+            const response = await fetch('/generate', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ choice: userAction }),
+            });
+            const data = await response.json();
+
+            setTimeout(() => {
+                storyTextDiv.innerHTML = `<p>${data.next_part}</p>`;
+                storyCard.classList.remove('loading');
+
+                if (data.game_over) {
+                    switchToGuessingPhase(data.user_choices);
+                } else {
+                    renderChoiceButtons(data.choice1, data.choice2);
+                }
+            }, 400);
+        }
+
+        function switchToGuessingPhase(choices) {
+            storyPhaseView.classList.add('hidden');
+            guessingPhaseView.classList.remove('hidden');
+            choicesListDiv.innerHTML = '';
+            choices.forEach((choice, index) => {
+                const choiceHTML = `
+                    <div class="choice-item">
+                        <input type="radio" id="choice${index}" name="final_guess" value="${choice}">
+                        <label for="choice${index}">${choice}</label>
+                    </div>
+                `;
+                choicesListDiv.innerHTML += choiceHTML;
+            });
+        }
+
+        async function handleGuess() {
+            const selectedChoice = document.querySelector('input[name="final_guess"]:checked');
+            if (!selectedChoice) return alert('You must guess which choice was the trigger!');
+            submitGuessButton.disabled = true;
+            const response = await fetch('/guess', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ guess: selectedChoice.value }),
+            });
+            const data = await response.json();
+            resultArea.innerHTML = `<p class="result-text">${data.result_text}</p>`;
+            scoreDisplay.textContent = data.score;
+            guessingPhaseView.classList.add('hidden');
+            newGameButton.classList.remove('hidden');
+        }
+
+        renderChoiceButtons("{{ choice1 }}", "{{ choice2 }}");
+    </script>
+</body>
+</html>
